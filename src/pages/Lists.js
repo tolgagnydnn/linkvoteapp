@@ -1,5 +1,8 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom';
+import Modal from '../components/Modal';
 import {
+    ListCardBox,
     ListCard,
     ListPoint,
     ListPointBox,
@@ -27,33 +30,25 @@ function Lists() {
     }
 
     return (   
-        <>
-        <ListCard>
-            <ListPointBox>
-              <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
-              <ListPoint> {listPoint} <span>points</span></ListPoint>
-              <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
-            </ListPointBox>
-            <ListDescription>
-                <ListTitle>Liste Başlığı Gelecek</ListTitle>
-                <ListLink> Buraya Açıklama Gelecek </ListLink>
-            </ListDescription>
-            <ListCardClose>&times;</ListCardClose>
-        </ListCard>
-        <ListCard>
-            <ListPointBox>
-              <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
-              <ListPoint> {listPoint} <span>points</span></ListPoint>
-              <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
-            </ListPointBox>
-            <ListDescription>
-                <ListTitle>Liste Başlığı Gelecek</ListTitle>
-                <ListLink> Buraya Açıklama Gelecek </ListLink>
-            </ListDescription>
-            <ListCardClose>&times;</ListCardClose>
-        </ListCard>
-        
-        </>
+        <ListCardBox>
+            <Link className="toAddLink" to="/addlist">
+                <span> + </span>
+                Add To Link
+            </Link>
+            <ListCard>
+                <ListPointBox>
+                <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
+                <ListPoint> {listPoint} <span>points</span></ListPoint>
+                <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
+                </ListPointBox>
+                <ListDescription>
+                    <ListTitle>Liste Başlığı Gelecek</ListTitle>
+                    <ListLink> Buraya Açıklama Gelecek </ListLink>
+                </ListDescription>
+                <ListCardClose>&times;</ListCardClose>
+            </ListCard>
+            <Modal/>
+        </ListCardBox>
     )
 }
 

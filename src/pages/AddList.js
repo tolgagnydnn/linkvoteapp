@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import {
     ListFormBox,
     ListFormHead,
@@ -13,6 +14,7 @@ import {
 
 function AddList() {
 
+    let navigate = useNavigate();
     const [listTitle, setlistTitle] = useState("");
     const [listLink, setlistLink] = useState("");
 
@@ -30,7 +32,7 @@ function AddList() {
 
     return (
         <ListFormBox>
-            <ListFormHead>Add New Link</ListFormHead>
+            <ListFormHead> <span class="previouspage" title="lists" onClick={() => navigate(-1)}> &lt; </span> <span> Add New Link </span> </ListFormHead>
             <ListForm onSubmit={addingfunc}>
                 <ListFormGroup>
                     <ListFormLabel> Link Name: </ListFormLabel>

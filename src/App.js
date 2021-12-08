@@ -5,19 +5,18 @@ import GlobalStyled from './styled/GlobalStyled'
 import {
 BrowserRouter as Router,
 Routes,
-Route,
-BrowserRouter
+Route
 } from 'react-router-dom'
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
     <GlobalStyled/>
       <Routes>
         <Route path="/" element={<Lists/>}> </Route>
         <Route path="/addlist" element={<AddList/>}> </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

@@ -1,6 +1,33 @@
 import styled from "styled-components";
 
 
+export const ListCardBox = styled.div`
+    text-align:center;
+    .toAddLink {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: rgb(72, 72, 72);
+        text-align: center;
+        border:solid 1px #ededed;
+        border-radius:1rem;
+        padding:10px 20px;
+        margin-bottom: 1rem;
+        display:flex;
+        justify-content:space-around;
+        align-items-center;
+        span {
+            width:25px;
+            height:25px;
+            line-height:25px;
+            background:rgb(255, 96, 0);
+            color:#ffffff;
+            text-align:center;
+            border-radius:50%;
+        
+        }
+    }
+`
+
 export const ListCardClose = styled.div`
     position: absolute;
     top: -8px;
@@ -99,6 +126,7 @@ export const DownvoteButton = styled(UpvoteButton)`
 
 export const ListDescription = styled.div`
     line-height:15px;
+    text-align:left;
 `
 
 export const ListTitle = styled.h1`
