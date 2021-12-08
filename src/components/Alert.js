@@ -2,9 +2,9 @@ import React from 'react'
 
 function Alert() {
     return (
-        <div>
-            
-        </div>
+        <AlertBox>
+            <p>İşlem Onaylandı</p>
+        </AlertBox>
     )
 }
 
