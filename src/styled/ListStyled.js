@@ -11,6 +11,7 @@ export const ListCardClose = styled.div`
     text-align: center;
     border-radius: 50%;
     background: rgb(255, 96, 0);
+    padding-left: 1px;
     color: white;
     border: 0;
     outline: none;
@@ -21,7 +22,7 @@ export const ListCardClose = styled.div`
 `
 
 export const ListCard = styled.div`
-    padding: 0rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius:1rem;
     border:solid 1px #f2f2f2;
     transition: .5s ease;
@@ -59,20 +60,41 @@ export const ListPoint = styled.div`
   align-items:center;
   flex-direction:column;
   font-weight:600;
-  font-size:0.90rem;
+  font-size:1rem;
   background:rgb(255, 96, 0);
   color:#ffffff;
   text-align:center;
   line-height:12px;
   span {
-      font-size:0.42rem;
+      font-size:0.46rem;
       display:block;
   }
 `
 
-export const ListPointButton = styled.div`
+export const UpvoteButton = styled.div`
     cursor:pointer;
-    color:${props => props.upvote ? "green" : "red"}
+    width: 0; 
+	height: 0;
+	border-bottom: 8px solid rgb(167, 167, 167);
+	border-left: 5px solid transparent; 
+	border-right: 5px solid transparent; 
+	margin-bottom: 5px;
+    background: none;
+    outline: 0;
+    transition: border .5s ease;
+    &:hover {
+        border-bottom-color: rgb(123, 123, 123);
+    }
+`
+
+export const DownvoteButton = styled(UpvoteButton)`
+    border-bottom: 0;
+    border-top: 8px solid rgb(167, 167, 167);;
+    margin-bottom: 0;
+    margin-top:5px;
+    &:hover {
+        border-top-color: rgb(123, 123, 123);
+    }
 `
 
 export const ListDescription = styled.div`

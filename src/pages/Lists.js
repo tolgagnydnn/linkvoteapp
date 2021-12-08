@@ -3,7 +3,8 @@ import {
     ListCard,
     ListPoint,
     ListPointBox,
-    ListPointButton,
+    UpvoteButton,
+    DownvoteButton,
     ListDescription,
     ListTitle,
     ListLink,
@@ -29,10 +30,9 @@ function Lists() {
         <>
         <ListCard>
             <ListPointBox>
-              <ListPointButton upvote onClick={() => upvote()}> arttır </ListPointButton> 
+              <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
               <ListPoint> {listPoint} <span>points</span></ListPoint>
-              <ListPointButton onClick={() => downvote()}> azalt </ListPointButton> 
-             
+              <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
             </ListPointBox>
             <ListDescription>
                 <ListTitle>Liste Başlığı Gelecek</ListTitle>
@@ -40,8 +40,24 @@ function Lists() {
             </ListDescription>
             <ListCardClose>&times;</ListCardClose>
         </ListCard>
+        <ListCard>
+            <ListPointBox>
+              <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
+              <ListPoint> {listPoint} <span>points</span></ListPoint>
+              <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
+            </ListPointBox>
+            <ListDescription>
+                <ListTitle>Liste Başlığı Gelecek</ListTitle>
+                <ListLink> Buraya Açıklama Gelecek </ListLink>
+            </ListDescription>
+            <ListCardClose>&times;</ListCardClose>
+        </ListCard>
+        
         </>
     )
 }
 
 export default Lists
+
+
+
