@@ -27,12 +27,12 @@ export const ListCard = styled.div`
     transition: .5s ease;
     border-left-width: 3px;
     border-left-color:rgb(255, 96, 0);
-    max-width:300px;
+    max-width:325px;
     margin:10px auto;
     display: grid;
     grid-template-columns:45px auto;
     align-items:center;
-    grid-gap:1.8rem;
+    grid-gap:2rem;
     position:relative;
     &:hover ${ListCardClose} {
         opacity:1;

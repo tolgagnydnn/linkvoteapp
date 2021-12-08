@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
     ListCard,
     ListPoint,
@@ -12,13 +12,27 @@ import {
 
 
 function Lists() {
+
+    let [listPoint, setlistPoint] = useState(0);
+
+    const upvote = () => {
+        setlistPoint(listPoint + 1)
+    }
+    const downvote = () => {
+        if(listPoint === 0){
+            return;  
+          }
+        setlistPoint(listPoint - 1)
+    }
+
     return (   
         <>
         <ListCard>
             <ListPointBox>
-              <ListPointButton upvote> ^ </ListPointButton> 
-              <ListPoint>20 <span>points</span></ListPoint>
-              <ListPointButton> ^ </ListPointButton> 
+              <ListPointButton upvote onClick={() => upvote()}> arttır </ListPointButton> 
+              <ListPoint> {listPoint} <span>points</span></ListPoint>
+              <ListPointButton onClick={() => downvote()}> azalt </ListPointButton> 
+             
             </ListPointBox>
             <ListDescription>
                 <ListTitle>Liste Başlığı Gelecek</ListTitle>
