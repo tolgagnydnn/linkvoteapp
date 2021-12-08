@@ -4,6 +4,8 @@ import styled from "styled-components";
 export const ListCardBox = styled.div`
     text-align:center;
     .toAddLink {
+        width:325px;
+        margin:10px auto;
         font-size: 1.5rem;
         font-weight: 600;
         color: rgb(72, 72, 72);

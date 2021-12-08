@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const BackDropBox = styled.div`
+
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    position:fixed;
+    top:0;
+    left:0;
+`
+
+
 export const ModalBox = styled.div`
     background:#fff;
     border-radius:1rem;
@@ -9,6 +20,7 @@ export const ModalBox = styled.div`
     transform: translate(-50%,-50%);
     box-shadow: 0 20px 45px 0 rgb(0 0 0 / 10%);
     min-width:350px;
+    z-index:99;
 `
 
 export const ModalHeader = styled.div`

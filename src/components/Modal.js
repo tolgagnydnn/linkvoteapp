@@ -7,7 +7,16 @@ import {
     ModalButton
 } from '../styled/ModalStyled'
 
-function Modal() {
+function Modal({onCancel, onConfirm}) {
+
+    const cancelHandler = () => {
+        onCancel();
+    }
+
+    const confirmHandler = () => {
+        onConfirm();
+    }
+
     return (
         <ModalBox>
             <ModalHeader> 
@@ -18,8 +27,8 @@ function Modal() {
                 <h3> Do you want to remove?</h3>
             </ModalBody>
             <ModalFooter>
-                <ModalButton cancel>CANCEL</ModalButton>
-                <ModalButton>OK</ModalButton>
+                <ModalButton cancel onClick={cancelHandler}>CANCEL</ModalButton>
+                <ModalButton onClick={confirmHandler}>OK</ModalButton>
             </ModalFooter>
         </ModalBox>
     )

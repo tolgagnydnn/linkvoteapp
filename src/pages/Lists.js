@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
+import BackDrop from '../components/BackDrop';
 import Modal from '../components/Modal';
 import {
     ListCardBox,
@@ -18,6 +19,11 @@ import {
 function Lists() {
 
     let [listPoint, setlistPoint] = useState(0);
+    const [openModal, setopenModal] = useState(false);
+
+    const closeOpenModal = () => {
+        setopenModal(false)
+    }
 
     const upvote = () => {
         setlistPoint(listPoint + 1)
@@ -45,9 +51,10 @@ function Lists() {
                     <ListTitle>Liste Başlığı Gelecek</ListTitle>
                     <ListLink> Buraya Açıklama Gelecek </ListLink>
                 </ListDescription>
-                <ListCardClose>&times;</ListCardClose>
+                <ListCardClose onClick={() => setopenModal(true)}>&times;</ListCardClose>
             </ListCard>
-            <Modal/>
+            {openModal && <Modal onCancel={closeOpenModal} onConfirm={closeOpenModal} />}
+            {openModal && <BackDrop onCancel={closeOpenModal}/>}
         </ListCardBox>
     )
 }
