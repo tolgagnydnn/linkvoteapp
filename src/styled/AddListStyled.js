@@ -55,18 +55,19 @@ export const ListFormLabel = styled.label`
 
 
 export const ListFormInput = styled.input`
-    background:#e5e5e5;
+    background:#f2f2f2;
     border:0;
     height: 55px;
     font-size: 0.765rem;
     display: block;
     width: 100%;
     color: rgb(72, 72, 72);
-    border-left-width: solid 3px rgb(255, 96, 0);
     padding-left: 1rem;
     margin-top:0.5rem;
     border-radius:0.4rem;
     &:focus {
+        background:none;
+        border:0;
         border-color: rgb(255, 96, 0);
     }
 `

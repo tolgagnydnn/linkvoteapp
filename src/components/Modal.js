@@ -1,4 +1,5 @@
 import React from 'react'
+//import Alert from '../components/Alert';
 import {
     ModalBox,
     ModalHeader,
@@ -31,6 +32,7 @@ function Modal({onCancel, onConfirm}) {
                 <ModalButton onClick={confirmHandler}>OK</ModalButton>
             </ModalFooter>
         </ModalBox>
+       
     )
 }
 

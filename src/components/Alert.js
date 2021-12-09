@@ -1,9 +1,18 @@
-import React from 'react'
+import {useEffect} from 'react'
+import {AlertBox} from '../styled/AlertStyled'
 
-function Alert() {
+function Alert({type, message, removeAlert}) {
+    
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            removeAlert()
+        }, 123000)
+        return () => clearTimeout(timeout);
+    }, [])
+
     return (
-        <AlertBox>
-            <p>İşlem Onaylandı</p>
+        <AlertBox type>
+            <p>{message} {type} </p>
         </AlertBox>
     )
 }

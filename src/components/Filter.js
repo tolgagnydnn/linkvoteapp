@@ -1,10 +1,15 @@
 import React from 'react'
+import {FilterBox, FilterSelect} from '../styled/FilterStyled'
+
 
 function Filter() {
     return (
-        <div>
-            
-        </div>
+        <FilterBox>
+                <FilterSelect>
+                    <option> Most Voted </option>
+                    <option> Less Voted </option>
+                </FilterSelect>
+        </FilterBox>
     )
 }
 

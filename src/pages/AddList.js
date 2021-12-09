@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import Alert from '../components/Alert';
 import {
     ListFormBox,
     ListFormHead,
@@ -17,23 +18,28 @@ function AddList() {
     let navigate = useNavigate();
     const [listTitle, setlistTitle] = useState("");
     const [listLink, setlistLink] = useState("");
+    const [alert, setAlert] = useState({show:false, message:"", type:""});
 
-    function addingfunc(e) {
+    const addingList = (e) => {
         e.preventDefault();
         if (!listTitle || !listLink) {
-          alert("Kindly fill both Inputs");
-        } else {
+            showAlert(true, "error", "Please fill in the blanks");
+        } else if (listTitle && listLink) {
             setlistTitle("");
             setlistLink("");
+            showAlert(true, "success", "Add Link Thanks");
         }
       }
-
-      console.log(listTitle, listLink)
+    
+    const showAlert = (show = false, type= "", message="") => {
+        setAlert({show, type, message})
+    }
 
     return (
+        <>
         <ListFormBox>
-            <ListFormHead> <span class="previouspage" title="lists" onClick={() => navigate(-1)}> &lt; </span> <span> Add New Link </span> </ListFormHead>
-            <ListForm onSubmit={addingfunc}>
+            <ListFormHead> <span className="previouspage" title="return to lists" onClick={() => navigate(-1)}> &lt; </span> <span> Add New Link </span> </ListFormHead>
+            <ListForm onSubmit={addingList}>
                 <ListFormGroup>
                     <ListFormLabel> Link Name: </ListFormLabel>
                     <ListFormInput value={listTitle} type="text" onChange={(e) => setlistTitle(e.target.value)} placeholder="e.g Alphabet"/>
@@ -47,6 +53,8 @@ function AddList() {
                 </ListButtonBox>
             </ListForm>
         </ListFormBox>
+        {alert.show && <Alert {...alert} removeAlert={showAlert}></Alert>}
+        </>
     )
 }
 
