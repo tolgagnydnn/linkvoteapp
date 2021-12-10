@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
 import BackDrop from '../components/BackDrop';
 import Modal from '../components/Modal';
 import Alert from '../components/Alert';
 import Pagination from '../components/Pagination'
 import Filter from '../components/Filter';
-import list from '../lists.json'
 import {
     ListCardBox,
     ListCard,
@@ -22,12 +21,19 @@ import {
 
 function Lists() {
 
+    const [list, setlist] = useState([])
     let [listPoint, setlistPoint] = useState(0);
     const [openModal, setopenModal] = useState(false);
     const [alertShow, setAlertShow] = useState(false); 
     const [currentPage, setcurrentPage] = useState(1);
     const [listPerPage] = useState(4);
-   
+    
+  
+    useEffect(() => {
+        const localList = JSON.parse(localStorage.getItem('links'));
+        setlist(localList);
+    }, [])
+    
     const closeOpenModal = () => {
         setopenModal(false)
         showAlert()
@@ -55,8 +61,7 @@ function Lists() {
     const indexOfFirstList = indexOfLastList - listPerPage;
     const currentList = list.slice(indexOfFirstList, indexOfLastList);
     const paginate = (pageNumber) => setcurrentPage(pageNumber);
-    
-    
+
 
     return (   
         <ListCardBox>
@@ -66,15 +71,15 @@ function Lists() {
             </Link>
             <Filter></Filter>
             {currentList.map((linklist) => (
-                <ListCard key={linklist.id} id={linklist.id}>
+                <ListCard key={linklist.listId} id={linklist.listId}>
                     <ListPointBox>
                     <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
-                    <ListPoint> {linklist.point} <span>point</span></ListPoint>
+                    <ListPoint> {linklist.listPoint} <span>point</span></ListPoint>
                     <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
                     </ListPointBox>
                     <ListDescription>
-                        <ListTitle>{linklist.linkTitle}</ListTitle>
-                        <ListLink> {linklist.linkUrl} </ListLink>
+                        <ListTitle>{linklist.listTitle}</ListTitle>
+                        <ListLink> {linklist.listLink} </ListLink>
                     </ListDescription>
                     <ListCardClose onClick={() => setopenModal(true)}>&times;</ListCardClose>
                 </ListCard> 
