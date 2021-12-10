@@ -15,7 +15,7 @@ export const PaginationNav = styled.ul`
     align-items:center;
 `
 
-export const PagiinationNumber = styled.li`
+export const PaginationNumber = styled.li`
     margin:0.15rem;
     width:30px;
     height:30px;

@@ -1,7 +1,7 @@
 import React from 'react'
-import {PaginationBox, PaginationNav, PagiinationNumber} from '../styled/PaginationStyled'
+import {PaginationBox, PaginationNav, PaginationNumber} from '../styled/PaginationStyled'
 
-function Pagination({listPerPage, totalList, paginate }) {
+function Pagination({listPerPage, totalList, paginate}) {
 
     const listNumbers = [];
  
@@ -9,16 +9,17 @@ function Pagination({listPerPage, totalList, paginate }) {
         listNumbers.push(i);
     }
 
+ 
     return (
         <PaginationBox>
             <PaginationNav>
-                <PagiinationNumber>&laquo;</PagiinationNumber>
+                <PaginationNumber>&laquo;</PaginationNumber>
                     {
                         listNumbers.map((number) => (
-                            <PagiinationNumber onClick={() => paginate(number)} key={number}>{number}</PagiinationNumber>
+                            <PaginationNumber onClick={() => paginate(number)} key={number}> {number} </PaginationNumber>
                         ))
                     }
-                <PagiinationNumber>&raquo;</PagiinationNumber>           
+                <PaginationNumber>&raquo;</PaginationNumber>           
             </PaginationNav>
         </PaginationBox>
     )

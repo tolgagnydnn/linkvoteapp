@@ -51,15 +51,12 @@ function Lists() {
     }
 
     /*Current Lists*/
-
     const indexOfLastList = currentPage * listPerPage;
     const indexOfFirstList = indexOfLastList - listPerPage;
     const currentList = list.slice(indexOfFirstList, indexOfLastList);
-
-    
-    /*Change List*/
     const paginate = (pageNumber) => setcurrentPage(pageNumber);
-
+    
+    
 
     return (   
         <ListCardBox>
@@ -85,7 +82,12 @@ function Lists() {
             {openModal && <Modal onCancel={closeOpenModal} onConfirm={closeOpenModal} />}
             {openModal && <BackDrop onCancel={closeOpenModal}/>}
             {alertShow && <Alert success></Alert>}
-            <Pagination listPerPage={listPerPage} totalList={list.length} paginate={paginate} prevpaginate={prevpaginate}></Pagination>
+            <Pagination 
+            listPerPage={listPerPage} 
+            totalList={list.length} 
+            paginate={paginate}
+            >
+            </Pagination>
         </ListCardBox>
     )
 }
