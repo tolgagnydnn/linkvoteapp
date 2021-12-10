@@ -22,7 +22,6 @@ import {
 function Lists() {
 
     const [list, setlist] = useState([])
-    let [listPoint, setlistPoint] = useState(0);
     const [openModal, setopenModal] = useState(false);
     const [alertShow, setAlertShow] = useState(false); 
     const [currentPage, setcurrentPage] = useState(1);
@@ -36,7 +35,7 @@ function Lists() {
     
     const closeOpenModal = () => {
         setopenModal(false)
-        showAlert()
+        showAlert();
     }
 
     const showAlert = () => {
@@ -46,20 +45,13 @@ function Lists() {
         },2500)
     }
 
-    const upvote = () => {
-        setlistPoint(listPoint + 1)
-    }
-    const downvote = () => {
-        if(listPoint === 0){
-            return;  
-          }
-        setlistPoint(listPoint - 1)
-    }
+
 
     /*Current Lists*/
     const indexOfLastList = currentPage * listPerPage;
     const indexOfFirstList = indexOfLastList - listPerPage;
     const currentList = list.slice(indexOfFirstList, indexOfLastList);
+    const totalList = Math.ceil(list.length / listPerPage);
     const paginate = (pageNumber) => setcurrentPage(pageNumber);
 
 
@@ -73,9 +65,9 @@ function Lists() {
             {currentList.map((linklist) => (
                 <ListCard key={linklist.listId} id={linklist.listId}>
                     <ListPointBox>
-                    <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
+                    <UpvoteButton>  </UpvoteButton> 
                     <ListPoint> {linklist.listPoint} <span>point</span></ListPoint>
-                    <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
+                    <DownvoteButton>  </DownvoteButton> 
                     </ListPointBox>
                     <ListDescription>
                         <ListTitle>{linklist.listTitle}</ListTitle>
@@ -90,7 +82,6 @@ function Lists() {
             <Pagination 
             listPerPage={listPerPage} 
             totalList={list.length} 
-            paginate={paginate}
             >
             </Pagination>
         </ListCardBox>

@@ -1,11 +1,14 @@
-import React from 'react'
+import {useState} from 'react'
 import {PaginationBox, PaginationNav, PaginationNumber} from '../styled/PaginationStyled'
 
-function Pagination({listPerPage, totalList, paginate}) {
+function Pagination() {
 
+    const [currentButton, setCurrentButton] = useState(1);
+
+    const pages = 5;
     const listNumbers = [];
  
-    for (let i =1; i <= Math.ceil(totalList / listPerPage); i++) {
+    for (let i =1; i <= pages; i++) {
         listNumbers.push(i);
     }
 
@@ -13,13 +16,13 @@ function Pagination({listPerPage, totalList, paginate}) {
     return (
         <PaginationBox>
             <PaginationNav>
-                <PaginationNumber>&laquo;</PaginationNumber>
+                <PaginationNumber onClick={() => setCurrentButton((prev) => prev === 1 ? prev : prev - 1)}>&laquo;</PaginationNumber>
                     {
-                        listNumbers.map((number) => (
-                            <PaginationNumber onClick={() => paginate(number)} key={number}> {number} </PaginationNumber>
+                        listNumbers.map((number ,index) => (
+                            <PaginationNumber key={index} onClick={() => setCurrentButton(number)}> {number} </PaginationNumber>
                         ))
                     }
-                <PaginationNumber>&raquo;</PaginationNumber>           
+                <PaginationNumber onClick={() => setCurrentButton((prev) => prev === listNumbers.length ? prev : prev + 1)}>&raquo;</PaginationNumber>           
             </PaginationNav>
         </PaginationBox>
     )
