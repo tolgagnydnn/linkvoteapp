@@ -5,6 +5,7 @@ import Modal from '../components/Modal';
 import Alert from '../components/Alert';
 import Pagination from '../components/Pagination'
 import Filter from '../components/Filter';
+import list from '../lists.json'
 import {
     ListCardBox,
     ListCard,
@@ -24,7 +25,9 @@ function Lists() {
     let [listPoint, setlistPoint] = useState(0);
     const [openModal, setopenModal] = useState(false);
     const [alertShow, setAlertShow] = useState(false); 
-
+    const [currentPage, setcurrentPage] = useState(1);
+    const [listPerPage] = useState(4);
+   
     const closeOpenModal = () => {
         setopenModal(false)
         showAlert()
@@ -47,6 +50,17 @@ function Lists() {
         setlistPoint(listPoint - 1)
     }
 
+    /*Current Lists*/
+
+    const indexOfLastList = currentPage * listPerPage;
+    const indexOfFirstList = indexOfLastList - listPerPage;
+    const currentList = list.slice(indexOfFirstList, indexOfLastList);
+
+    
+    /*Change List*/
+
+    const paginate = (pageNumber) => setcurrentPage(pageNumber);
+
     return (   
         <ListCardBox>
             <Link className="toAddLink" to="/addlist">
@@ -54,59 +68,24 @@ function Lists() {
                 Add To Link
             </Link>
             <Filter></Filter>
-            <ListCard>
-                <ListPointBox>
-                <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
-                <ListPoint> {listPoint} <span>points</span></ListPoint>
-                <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
-                </ListPointBox>
-                <ListDescription>
-                    <ListTitle>Liste Başlığı Gelecek</ListTitle>
-                    <ListLink> Buraya Açıklama Gelecek </ListLink>
-                </ListDescription>
-                <ListCardClose onClick={() => setopenModal(true)}>&times;</ListCardClose>
-            </ListCard>
-            <ListCard>
-                <ListPointBox>
-                <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
-                <ListPoint> {listPoint} <span>points</span></ListPoint>
-                <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
-                </ListPointBox>
-                <ListDescription>
-                    <ListTitle>Liste Başlığı Gelecek</ListTitle>
-                    <ListLink> Buraya Açıklama Gelecek </ListLink>
-                </ListDescription>
-                <ListCardClose onClick={() => setopenModal(true)}>&times;</ListCardClose>
-            </ListCard>
-            <ListCard>
-                <ListPointBox>
-                <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
-                <ListPoint> {listPoint} <span>points</span></ListPoint>
-                <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
-                </ListPointBox>
-                <ListDescription>
-                    <ListTitle>Liste Başlığı Gelecek</ListTitle>
-                    <ListLink> Buraya Açıklama Gelecek </ListLink>
-                </ListDescription>
-                <ListCardClose onClick={() => setopenModal(true)}>&times;</ListCardClose>
-            </ListCard>
-            <ListCard>
-                <ListPointBox>
-                <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
-                <ListPoint> {listPoint} <span>points</span></ListPoint>
-                <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
-                </ListPointBox>
-                <ListDescription>
-                    <ListTitle>Liste Başlığı Gelecek</ListTitle>
-                    <ListLink> Buraya Açıklama Gelecek </ListLink>
-                </ListDescription>
-                <ListCardClose onClick={() => setopenModal(true)}>&times;</ListCardClose>
-            </ListCard>
-            
+            {currentList.map((linklist) => (
+                <ListCard key={linklist.id} id={linklist.id}>
+                    <ListPointBox>
+                    <UpvoteButton onClick={() => upvote()}>  </UpvoteButton> 
+                    <ListPoint> {linklist.point} <span>point</span></ListPoint>
+                    <DownvoteButton onClick={() => downvote()}>  </DownvoteButton> 
+                    </ListPointBox>
+                    <ListDescription>
+                        <ListTitle>{linklist.linkTitle}</ListTitle>
+                        <ListLink> {linklist.linkUrl} </ListLink>
+                    </ListDescription>
+                    <ListCardClose onClick={() => setopenModal(true)}>&times;</ListCardClose>
+                </ListCard> 
+            ))}           
             {openModal && <Modal onCancel={closeOpenModal} onConfirm={closeOpenModal} />}
             {openModal && <BackDrop onCancel={closeOpenModal}/>}
             {alertShow && <Alert success></Alert>}
-            <Pagination></Pagination>
+            <Pagination listPerPage={listPerPage} totalList={list.length} paginate={paginate}></Pagination>
         </ListCardBox>
     )
 }
